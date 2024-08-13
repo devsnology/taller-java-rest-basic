@@ -1,6 +1,8 @@
 server:
   port: ${PORT:8080}
 spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
   application:
     name: demo
   devtools:
