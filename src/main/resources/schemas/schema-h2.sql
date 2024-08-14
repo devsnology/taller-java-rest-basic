@@ -63,3 +63,29 @@ INSERT INTO curriculum_vitae (
              'Control de versiones (Git, GitHub, Bitbucket)',
              'palet.gerardo@correo.com', '+123456789'
          );
+INSERT INTO curriculum_vitae (
+    dni, name, profile, experience_1_position, experience_1_company, experience_1_description,
+    experience_2_position, experience_2_company, experience_2_description,
+    experience_3_position, experience_3_company, experience_3_description,
+    experience_4_position, experience_4_company, experience_4_description,
+    education_1_degree, education_1_institution, education_1_description,
+    education_2_degree, education_2_institution, education_2_description,
+    education_3_degree, education_3_institution, education_3_description,
+    skills_1, skills_2, skills_3, skills_4, skills_5,
+    contact_email, contact_phone
+) VALUES (
+             '46568060', 'Franco Iglesias Coqueti', 'Desarrollador',
+             'Programador', 'Volt proyect', 'Responsable del desarrollo de la mecanica de simulacion de cableado',
+             'No hay mas', 'No hay mas Inc', 'No se que poner, esto es para probar la logica del script',
+             'Igual fue', 'en un cv', 'hay que mandarle fruta',
+             'Ingeniero de software de la nasa', 'La nasa', '¿La llegada del hombre a la luna? Eso es gracias a mi ¿Pruebas? ... ... No',
+             'Máster of puppets', 'Tatata tatata tata', 'ta ta ta',
+             'tatata tatata tata', 'tata tata tata ta', 'tatata tatata tata',
+             'ta ta ta', 'tata ti tata ti', 'tata ti tu ti tu tium tata ti tata tu tium tium tium',
+             'Se tocar la guitarra',
+             'Cebo buenos mates',
+             'Puedo dar bastante charla si me lo propongo',
+             'Se ingles',
+             'No es mucho, pero es trabajo honesto',
+             'daxbueno198@gmail.com', '+54 9 249 457-4526'
+         );
