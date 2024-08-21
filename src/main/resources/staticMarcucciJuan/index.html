@@ -1,10 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="PATH" content="DINAMIC_PATH">
+    <title>curriculum_juan</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        .cv-container {
+            width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .personal-info, .description, .technologies {
+            margin-bottom: 20px;
+        }
+        .personal-info span, .description span, .technologies span {
+            font-weight: bold;
+            color: #555;
+        }
+        .personal-info {
+            text-align: center;
+            font-size: 18px;
+        }
+        .description, .technologies {
+            font-size: 16px;
+        }
+        .description{
+            width: 80%;
+            margin: 40px 20px 40px 20px;
+        }
+        .technologies {
+            display: flex;
+            justify-content: center;
+        }
+        .technologies p {
+            background-color: #e0e0e0;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+    </style>
 </head>
 <body>
+<div class="cv-container">
+    <h1>Soy ...</h1>
+    <div class="personal-info">
+        <span>18 años</span> | <span>Argentino</span>
+    </div>
+    <div class="description">
+        <p id="datos">Soy estudiante de Técnica 2.
+            Desarrollador tipografico de nomenclatura altamente calificada,
+            no equiparable a seres de bajo coeficiente intelectual,
+            los cuales son totalmente procrastinados y adictos a la dopamina generada por
+            artefactos emitentes de informacion a travez de ondas de luz. <br> Sin experiencia laboral.</p>
+    </div>
+    <div class="technologies">
+        <span>Tecnologías:</span>
+        <p id="tecnologia"></p>
+    </div>
+    <div class="personal-info">
+        <span id="email">x@gmail.com</span> | <span id="telefono">+0000000</span>
+    </div>
+</div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const path = getPathFromMetaTag();
+
+        if (path) {
+            fetch(`http://localhost:8080/${path}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.querySelector('h1').innerHTML = `Soy  `+ data.nombre +``;
+                    document.querySelector('#datos').innerHTML = `Descripcion :  `
+                        + data.perfil +`(` + data.posicion +`).`+ data.experiencia_en_empresa +`.`+
+                        data.description_experiencia +`.<br>Institudcion de Educacion: <b>`+ data.educacion+`, `
+                         + data.educacion_universitaria +`.</b><br> Titulos:` + data.titulo_educacion +`, `+ data.titulo_educacion2 +`.`
+                        ;
+
+                    document.querySelector('#tecnologia').innerHTML = data.tecnologias +`.`;
+                    document.querySelector('#email').innerHTML = data.contacto_email;
+                    document.querySelector('#telefono').innerHTML =  data.contacto_telefono;
+
+
+                })
+        }
+    })
+
+    function getPathFromMetaTag() {
+        const metaTag = document.querySelector('meta[name="PATH"]');
+        return metaTag ? metaTag.getAttribute('content') : null;
+    }
+
+</script>
 </body>
 </html>

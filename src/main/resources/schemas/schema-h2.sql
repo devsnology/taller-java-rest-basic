@@ -1,6 +1,7 @@
 -- Eliminación de la tabla si existe
 DROP TABLE IF EXISTS curriculum_vitae;
 
+
 -- Creación de la tabla basada en el DTO
 CREATE TABLE curriculum_vitae (
                                   dni VARCHAR(20) PRIMARY KEY,
@@ -63,3 +64,32 @@ INSERT INTO curriculum_vitae (
              'Control de versiones (Git, GitHub, Bitbucket)',
              'palet.gerardo@correo.com', '+123456789'
          );
+
+DROP TABLE IF EXISTS curriculum_juan;
+
+CREATE TABLE curriculum_juan (
+                                  dni VARCHAR(20) PRIMARY KEY,
+                                  nombre VARCHAR(255),
+                                  perfil TEXT,
+                                  posicion VARCHAR(255),
+                                  experiencia_en_empresa VARCHAR(255),
+                                  description_experiencia VARCHAR(255),
+                                  educacion VARCHAR(255),
+                                  titulo_educacion VARCHAR(255),
+                                  titulo_educacion2 VARCHAR(255),
+                                  educacion_universitaria VARCHAR(255),
+                                  tecnologias VARCHAR(255),
+                                  contacto_email VARCHAR(255),
+                                  contacto_telefono VARCHAR(50)
+);
+
+
+INSERT INTO curriculum_juan (
+    dni, nombre, perfil, posicion, experiencia_en_empresa, description_experiencia,
+    educacion, titulo_educacion, titulo_educacion2, educacion_universitaria,
+    tecnologias, contacto_email, contacto_telefono
+) VALUES ('46751342', 'Juan Manuel Marcucci', 'Estudiante programador con conocimiento en desarrollo web, sin especializacion', 'Junior Software Engineer',
+          'Sin experiencia en empresa pero si en grupo de gente', 'Responsable en actual desarrollo en pagina de alquiler de casas',
+          'Secundario en EESTN-2', 'Secundario Completo', 'en tramite de Tecnico Programador', 'En proceso de realizar ingreso en "Ingenieria en Sistemas"',
+          'HTML, CSS, JavaScript, Java, PHP, SQL', 'juanmanuelmarcucci05@gmail.com', '+123456789'
+);
