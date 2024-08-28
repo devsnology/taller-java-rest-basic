@@ -21,7 +21,7 @@ import java.nio.file.Files;
 public class FrancoIglesiasController {
 
     @Autowired
-    private GerardoPaletService gerardoPaletService;
+    private FrancoIglesiasService francoIglesiasService;
 
     @GetMapping("/cv/{dni}")
     public ResponseEntity<Resource> index(@PathVariable(required = false) String dni) throws IOException {
@@ -40,7 +40,7 @@ public class FrancoIglesiasController {
 
     @GetMapping("/info/{dni}")
     public ResponseEntity<CurriculumVitae> info(@PathVariable(required = false) String dni) throws IOException {
-        CurriculumVitae data = gerardoPaletService.getUserInfo(dni);
+        CurriculumVitae data = francoIglesiasService.getUserInfo(dni);
         return ResponseEntity.ok().body(data);
     }
 

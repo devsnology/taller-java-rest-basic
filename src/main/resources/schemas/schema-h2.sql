@@ -1,6 +1,7 @@
 -- Eliminación de la tabla si existe
 DROP TABLE IF EXISTS curriculum_vitae;
 
+
 -- Creación de la tabla basada en el DTO
 CREATE TABLE curriculum_vitae (
                                   dni VARCHAR(20) PRIMARY KEY,
@@ -89,3 +90,18 @@ INSERT INTO curriculum_vitae (
              'No es mucho, pero es trabajo honesto',
              'daxbueno198@gmail.com', '+54 9 249 457-4526'
          );
+DROP TABLE IF EXISTS debts;
+CREATE TABLE debts (
+    debt_id VARCHAR(20) PRIMARY KEY,
+    dni VARCHAR(20) FOREIGN KEY REFERENCES curriculum_vitae(dni),
+    amount varchar(50)
+);
+INSERT INTO debts(
+                  debt_id,
+                  dni,
+                  amount
+) VALUES (
+          '123456',
+          '46568060',
+          '1000'
+         )
