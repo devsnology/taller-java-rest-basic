@@ -19,4 +19,9 @@ public class GerardoPaletService {
         }
         return null;
     }
+
+
+    public CurriculumVitae buscarPorNombre(String name) {
+        return gerardoPaletRepository.buscarPorNombre(name);
+    }
 }
