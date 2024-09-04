@@ -63,3 +63,31 @@ INSERT INTO curriculum_vitae (
              'Control de versiones (Git, GitHub, Bitbucket)',
              'palet.gerardo@correo.com', '+123456789'
          );
+DROP TABLE IF EXISTS curriculum_Maximo;
+
+CREATE TABLE curriculum_Maximo (
+                                   dni VARCHAR(20) PRIMARY KEY,
+                                   nombre VARCHAR(255),
+                                   perfil TEXT,
+                                   posicion VARCHAR(255),
+                                   experiencia_en_empresa VARCHAR(255),
+                                   description_experiencia VARCHAR(255),
+                                   educacion VARCHAR(255),
+                                   titulo_educacion VARCHAR(255),
+                                   titulo_educacion2 VARCHAR(255),
+                                   educacion_universitaria VARCHAR(255),
+                                   tecnologias VARCHAR(255),
+                                   contacto_email VARCHAR(255),
+
+);
+
+
+INSERT INTO curriculum_Maximo (
+    dni, nombre, perfil, posicion, experiencia_en_empresa, description_experiencia,
+    educacion, titulo_educacion, titulo_educacion2, educacion_universitaria,
+    tecnologias, contacto_email
+) VALUES ('47139128', 'maximo guillermo laborde', 'Estudiante programador con conocimiento en desarrollo web, sin especializacion', 'Junior Software Engineer',
+          'Sin experiencia en empresa pero si en grupo de gente', 'Responsable en actual desarrollo en pagina de alquiler de casas',
+          'Secundario en EESTN-2', 'Secundario Completo', 'en tramite de Tecnico Programador', '',
+          'HTML, CSS, JavaScript, Java, PHP, SQL', 'labordeguillermo123@gmail.com'
+         );

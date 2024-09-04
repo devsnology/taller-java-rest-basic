@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="PATH" content="DINAMIC_PATH">
+  <title>curriculum</title>
+  <style>
+    body {
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #fafafa;
+        font-family: 'Arial', sans-serif;
+        color: #333;
+      }
+
+      .cv-container {
+        margin: auto;
+        width: 900px;
+        max-width: 95%;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        text-align: center;
+        color: #2c3e50;
+        font-size: 40px;
+        margin-bottom: 15px;
+        font-weight: 700;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+        width: 100%;
+      }
+
+      .personal-info, .description, .technologies {
+        margin-bottom: 30px;
+        width: 100%;
+      }
+
+      .personal-info {
+        text-align: center;
+        font-size: 18px;
+        color: #34495e;
+        border-top: 2px solid #3498db;
+        padding-top: 10px;
+      }
+
+      .personal-info span {
+        font-weight: 500;
+      }
+
+      .description {
+        font-size: 18px;
+        line-height: 1.8;
+        color: #555;
+        background-color: #ecf0f1;
+        border-radius: 5px;
+        padding: 15px;
+      }
+
+      .description p {
+        margin: 0;
+      }
+
+      .technologies {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 16px;
+        color: #2c3e50;
+      }
+
+      .technologies span {
+        font-weight: 500;
+        margin-bottom: 15px;
+      }
+
+      .technologies p {
+        background-color: #ffffff;
+        padding: 12px 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 5px;
+        font-size: 16px;
+        color: #34495e;
+      }
+
+      .contact-info {
+        text-align: center;
+        font-size: 18px;
+        color: #34495e;
+        border-top: 2px solid #3498db;
+        padding-top: 10px;
+        width: 100%;
+      }
+
+      .contact-info span {
+        display: block;
+        margin: 5px 0;
+        font-weight: 500;
+      }
+    }
+  </style>
+</head>
+<div class="cv-container">
+  <h1>Soy ...</h1>
+  <div class="personal-info">
+    <span>18 años</span> | <span>Argentino</span>
+  </div>
+  <div class="description">
+    <p id="datos"> Técnica 2.</p>
+  </div>
+  <div class="technologies">
+    <span>Tecnologías:</span>
+    <p id="tecnologia"></p>
+  </div>
+  <div class="personal-info">
+    <span id="email">x@gmail.com</span> | <span id="telefono">+0000000</span>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const path = getPathFromMetaTag();
+
+    if (path) {
+      fetch(`http://localhost:8080/${path}`)
+              .then(response => response.json())
+              .then(data => {
+                document.querySelector('h1').innerHTML = `Soy  `+ data.nombre +``;
+                document.querySelector('#datos').innerHTML = `Descripcion :  `
+                        + data.perfil +`(` + data.posicion +`).`+ data.experiencia_en_empresa +`.`+
+                        data.description_experiencia +`.<br>Institudcion de Educacion: <b>`+ data.educacion+`, `
+                        + data.educacion_universitaria +`.</b><br> Titulos:` + data.titulo_educacion +`, `+ data.titulo_educacion2 +`.`
+                ;
+
+                document.querySelector('#tecnologia').innerHTML = data.tecnologias +`.`;
+                document.querySelector('#email').innerHTML = data.contacto_email;
+
+
+              })
+    }
+  })
+
+  function getPathFromMetaTag() {
+    const metaTag = document.querySelector('meta[name="PATH"]');
+    return metaTag ? metaTag.getAttribute('content') : null;
+  }
+
+</script>
+</body>
+</html>

@@ -14,10 +14,11 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/Registros
     username: postgres
-    password: Admin123
+    password: 1234
   jpa:
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: create-drop  # Esto permite que las tablas se creen y actualicen según las entidades
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
