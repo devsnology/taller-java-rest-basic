@@ -19,13 +19,17 @@ import java.nio.file.Files;
 @RequestMapping("/gerardo-palet")
 public class GerardoPaletController {
 
-    @Autowired
+    @Autowired // Inyeccion de dependencia = A que spring haga la instancia de la clase por mí.
     private GerardoPaletService gerardoPaletService;
 
-    @GetMapping("/cv/{dni}")
+    @GetMapping("/cv/{dni}") // puerta entrada, tiene un formato GET /gerardo-palet/cv/33333333
     public ResponseEntity<Resource> index(@PathVariable(required = false) String dni) throws IOException {
         Resource resource = new ClassPathResource("static/index.html");
-        String content = new String(Files.readAllBytes(resource.getFile().toPath()));
+        String content = new String(
+                Files.readAllBytes(
+                        resource.getFile().toPath()
+                )
+        );
 
         // Reemplazar el marcador DINAMIC_PATH con el path correcto
         String dynamicPath = "gerardo-palet/info/" + dni;
@@ -40,6 +44,12 @@ public class GerardoPaletController {
     @GetMapping("/info/{dni}")
     public ResponseEntity<CurriculumVitae> info(@PathVariable(required = false) String dni) throws IOException {
         CurriculumVitae data = gerardoPaletService.getUserInfo(dni);
+        return ResponseEntity.ok().body(data);
+    }
+
+    @GetMapping("/info/name/{name}")
+    public ResponseEntity<CurriculumVitae> infoByName(@PathVariable(required = false) String name) throws IOException {
+        CurriculumVitae data = gerardoPaletService.buscarPorNombre(name);
         return ResponseEntity.ok().body(data);
     }
 

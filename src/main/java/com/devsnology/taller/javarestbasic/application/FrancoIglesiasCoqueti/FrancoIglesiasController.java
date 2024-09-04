@@ -44,4 +44,10 @@ public class FrancoIglesiasController {
         return ResponseEntity.ok().body(data);
     }
 
+    @GetMapping("/info/name/{name}")
+    public ResponseEntity<CurriculumVitae> infoByName(@PathVariable(required = false) String name) throws IOException {
+        CurriculumVitae data = francoIglesiasService.buscarPorNombre(name);
+        return ResponseEntity.ok().body(data);
+    }
+
 }

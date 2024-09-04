@@ -6,17 +6,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "debts")
-public class Debt {
+@Table(name = "direcciones")
+public class Direcciones {
 
     @Id
-    @Column(name = "debt_id")
+    @Column(name = "dni")
     public String id;  // No autogenerar el DNI, se proporciona
 
-    @Column(name = "dni")
-    public String dni;
+    @Column(name = "calle")
+    public String calle;
 
-    @Column(name ="amount")
-    public String amount;
+    @Column(name = "numero")
+    public String numero;
 
-};
+}

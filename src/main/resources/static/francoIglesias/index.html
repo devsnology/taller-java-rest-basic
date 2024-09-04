@@ -97,7 +97,7 @@
 
         if (path) {
             // Hacer fetch a la URL para obtener los datos del CV
-            fetch(`http://localhost:8080/${path}`)
+            fetch(`http://localhost:7656/${path}`)
                 .then(response => response.json())
                 .then(data => {
                     // Rellenar los campos del CV con los datos recibidos
@@ -106,9 +106,9 @@
 
                     // Experiencia Profesional
                     document.querySelectorAll('.experience').forEach((element, index) => {
-                        const position = `experience_${index + 1}_position`;
-                        const company = `experience_${index + 1}_company`;
-                        const description = `experience_${index + 1}_description`;
+                        const position = `experience${index + 1}_position`;
+                        const company = `experience${index + 1}_company`;
+                        const description = `experience${index + 1}_description`;
 
                         console.log(data[position]);
                         console.log(data[company]);
@@ -123,9 +123,9 @@
 
                     // Educación
                     document.querySelectorAll('.education').forEach((element, index) => {
-                        const degree = `education_${index + 1}_degree`;
-                        const institution = `education_${index + 1}_institution`;
-                        const description = `education_${index + 1}_description`;
+                        const degree = `education${index + 1}_degree`;
+                        const institution = `education${index + 1}_institution`;
+                        const description = `education${index + 1}_description`;
 
                         console.log(data[degree]);
                         console.log(data[institution]);
@@ -140,7 +140,7 @@
 
                     // Habilidades
                     document.querySelectorAll('.skills').forEach((element, index) => {
-                        const skill = `skills_${index + 1}`;
+                        const skill = `skills${index + 1}`;
 
                         console.log(data[skill]);
                         if (data[skill]) {

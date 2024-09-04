@@ -110,10 +110,6 @@
                         const company = `experience_${index + 1}_company`;
                         const description = `experience_${index + 1}_description`;
 
-                        console.log(data[position]);
-                        console.log(data[company]);
-                        console.log(data[description]);
-
                         if (data[position] && data[company] && data[description]) {
                             element.querySelector('.position').textContent = data[position];
                             element.querySelector('.company').textContent = data[company];
