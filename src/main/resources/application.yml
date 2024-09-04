@@ -14,7 +14,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/Registros
     username: postgres
-    password: Admin123
+    password: mododiablo05
   jpa:
     defer-datasource-initialization: true
     hibernate:

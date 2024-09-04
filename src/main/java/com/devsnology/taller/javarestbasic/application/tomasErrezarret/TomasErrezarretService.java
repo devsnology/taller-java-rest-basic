@@ -1,4 +1,4 @@
-package com.devsnology.taller.javarestbasic.application.gerardoPalet;
+package com.devsnology.taller.javarestbasic.application.tomasErrezarret;
 
 import com.devsnology.taller.javarestbasic.application.shared.CurriculumVitaeTomasErrezarret;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,21 +7,20 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class GerardoPaletService {
+public class TomasErrezarretService {
 
     @Autowired
-    private GerardoPaletRepository gerardoPaletRepository;
+    private TomasErrezarretRepository tomasErrezarretRepository;
 
     public CurriculumVitaeTomasErrezarret getUserInfo(String dni) {
-        Optional<CurriculumVitaeTomasErrezarret> infoEncontrada = gerardoPaletRepository.findById(dni);
+        Optional<CurriculumVitaeTomasErrezarret> infoEncontrada = tomasErrezarretRepository.findById(dni);
         if (infoEncontrada.isPresent()) {
             return infoEncontrada.get();
         }
         return null;
     }
 
-
     public CurriculumVitaeTomasErrezarret buscarPorNombre(String name) {
-        return gerardoPaletRepository.buscarPorNombre(name);
+        return tomasErrezarretRepository.BuscarNombre(name);
     }
 }

@@ -1,4 +1,4 @@
-package com.devsnology.taller.javarestbasic.application.gerardoPalet;
+package com.devsnology.taller.javarestbasic.application.tomasErrezarret;
 
 import com.devsnology.taller.javarestbasic.application.shared.CurriculumVitaeTomasErrezarret;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +16,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 @RestController
-@RequestMapping("/gerardo-palet")
-public class GerardoPaletController {
+@RequestMapping("/tomas-errezarret")
+public class TomasErrezarretController {
 
-    @Autowired // Inyeccion de dependencia = A que spring haga la instancia de la clase por mí.
-    private GerardoPaletService gerardoPaletService;
+    @Autowired
+    private TomasErrezarretService tomasErrezarretService;
 
-    @GetMapping("/cv/{dni}") // puerta entrada, tiene un formato GET /gerardo-palet/cv/33333333
+    @GetMapping("/cv/{dni}")
     public ResponseEntity<Resource> index(@PathVariable(required = false) String dni) throws IOException {
         Resource resource = new ClassPathResource("static/index.html");
         String content = new String(
@@ -31,8 +31,7 @@ public class GerardoPaletController {
                 )
         );
 
-        // Reemplazar el marcador DINAMIC_PATH con el path correcto
-        String dynamicPath = "gerardo-palet/info/" + dni;
+        String dynamicPath = "tomas-errezarret/info/" + dni;
         content = content.replace("DINAMIC_PATH", dynamicPath);
 
         HttpHeaders headers = new HttpHeaders();
@@ -43,14 +42,13 @@ public class GerardoPaletController {
 
     @GetMapping("/info/{dni}")
     public ResponseEntity<CurriculumVitaeTomasErrezarret> info(@PathVariable(required = false) String dni) throws IOException {
-        CurriculumVitaeTomasErrezarret data = gerardoPaletService.getUserInfo(dni);
+        CurriculumVitaeTomasErrezarret data = tomasErrezarretService.getUserInfo(dni);
         return ResponseEntity.ok().body(data);
     }
 
-    @GetMapping("/info/name/{name}")
+    @GetMapping("/info/{name}")
     public ResponseEntity<CurriculumVitaeTomasErrezarret> infoByName(@PathVariable(required = false) String name) throws IOException {
-        CurriculumVitaeTomasErrezarret data = gerardoPaletService.buscarPorNombre(name);
+        CurriculumVitaeTomasErrezarret data = tomasErrezarretService.buscarPorNombre(name);
         return ResponseEntity.ok().body(data);
     }
-
 }
