@@ -40,4 +40,10 @@ public class JuanMarcucciController {
         CurriculumVitaeJuan datos = JuanMarcucciService.getUserInfo(dni);
         return ResponseEntity.ok().body(datos);
     }
+
+    @GetMapping("/info/nombre/{nombre}")
+    public ResponseEntity<CurriculumVitaeJuan> infoByNombre(@PathVariable(required = false) String nombre) throws IOException{
+        CurriculumVitaeJuan datos = JuanMarcucciService.getUserName(nombre);
+        return ResponseEntity.ok().body(datos);
+    }
 }

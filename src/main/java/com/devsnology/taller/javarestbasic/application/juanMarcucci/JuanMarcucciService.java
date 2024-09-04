@@ -19,4 +19,9 @@ public class JuanMarcucciService {
         }
         return null;
     }
+
+    public CurriculumVitaeJuan getUserName(String nombre){
+        return JuanMarcucciRepository.EncontrarNombre(nombre);
+
+    }
 }
