@@ -1,6 +1,6 @@
-package com.devsnology.taller.javarestbasic.application.gerardoPalet;
+package com.devsnology.taller.javarestbasic.application.ManuelFigueroa;
 
-import com.devsnology.taller.javarestbasic.application.shared.CurriculumVitae;
+import com.devsnology.taller.javarestbasic.application.shared.CurriculumVitaeManuel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.ClassPathResource;
@@ -16,11 +16,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 @RestController
-@RequestMapping("/gerardo-palet")
-public class GerardoPaletController {
+@RequestMapping("/manuel-figueroa")
+public class ManuelFigueroaController {
 
     @Autowired // Inyeccion de dependencia = A que spring haga la instancia de la clase por mí.
-    private GerardoPaletService gerardoPaletService;
+    private ManuelFigueroaService ManuelFigueroaService;
 
     @GetMapping("/cv/{dni}") // puerta entrada, tiene un formato GET /gerardo-palet/cv/33333333
     public ResponseEntity<Resource> index(@PathVariable(required = false) String dni) throws IOException {
@@ -32,7 +32,7 @@ public class GerardoPaletController {
         );
 
         // Reemplazar el marcador DINAMIC_PATH con el path correcto
-        String dynamicPath = "gerardo-palet/info/" + dni;
+        String dynamicPath = "manuel-figueroa/info/" + dni;
         content = content.replace("DINAMIC_PATH", dynamicPath);
 
         HttpHeaders headers = new HttpHeaders();
@@ -42,14 +42,14 @@ public class GerardoPaletController {
     }
 
     @GetMapping("/info/{dni}")
-    public ResponseEntity<CurriculumVitae> info(@PathVariable(required = false) String dni) throws IOException {
-        CurriculumVitae data = gerardoPaletService.getUserInfo(dni);
+    public ResponseEntity<CurriculumVitaeManuel> info(@PathVariable(required = false) String dni) throws IOException {
+        CurriculumVitaeManuel data = ManuelFigueroaService.getUserInfo(dni);
         return ResponseEntity.ok().body(data);
     }
 
     @GetMapping("/info/name/{name}")
-    public ResponseEntity<CurriculumVitae> infoByName(@PathVariable(required = false) String name) throws IOException {
-        CurriculumVitae data = gerardoPaletService.buscarPorNombre(name);
+    public ResponseEntity<CurriculumVitaeManuel> infoByName(@PathVariable(required = false) String name) throws IOException {
+        CurriculumVitaeManuel data = ManuelFigueroaService.buscarPorNombre(name);
         return ResponseEntity.ok().body(data);
     }
 

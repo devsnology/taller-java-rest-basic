@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="PATH" content="DINAMIC_PATH">
+    <title>Curriculum Vitae</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        body.dark-mode {
+            background-color: #1a202c;
+            color: #cbd5e0;
+        }
+        body.light-mode {
+            background-color: #ffffff;
+            color: #1a202c;
+        }
+        .dark-mode h1, .dark-mode h2, .dark-mode strong {
+            color: #ffffff;
+        }
+        .skeleton {
+            background: linear-gradient(-90deg, #e2e2e2 25%, #f0f0f0 50%, #e2e2e2 75%);
+            background-size: 400% 100%;
+            animation: shimmer 1.2s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 100% 0; }
+            100% { background-position: 0 0; }
+        }
+    </style>
+</head>
+<body class="light-mode">
+<nav class="bg-gray-800 p-4 flex justify-between items-center">
+    <div class="text-white text-lg">Curriculum Vitae</div>
+    <button id="toggle-mode" class="bg-gray-700 text-white px-4 py-2 rounded">Modo Oscuro</button>
+</nav>
+<main class="container mx-auto p-4 flex flex-col items-center">
+    <section class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-4xl">
+        <div class="flex items-center mb-8">
+            <div class="w-32 h-32 bg-gray-200 skeleton rounded-full mr-8" id="profile-image"></div>
+            <div>
+                <h1 class="text-4xl font-bold mb-2">John Doe</h1>
+                <p class="text-lg mb-4">Desarrollador de software con más de 10 años de experiencia en la industria tecnológica, especializado en desarrollo web y aplicaciones móviles.</p>
+            </div>
+        </div>
+        <h2 class="text-2xl font-semibold mb-2">Experiencia Profesional</h2>
+        <ul class="list-disc list-inside mb-4">
+            <li class="experience">
+                <strong class="position">Senior Software Engineer</strong> - <span class="company">Tech Solutions Inc.</span>
+                <p class="text-sm description">Responsable del desarrollo y mantenimiento de aplicaciones web, liderando un equipo de desarrolladores y mejorando la eficiencia del código.</p>
+            </li>
+            <li class="experience">
+                <strong class="position">Full Stack Developer</strong> - <span class="company">Innovative Apps LLC</span>
+                <p class="text-sm description">Desarrollé aplicaciones web y móviles utilizando tecnologías modernas, mejorando la experiencia del usuario y optimizando el rendimiento.</p>
+            </li>
+            <li class="experience">
+                <strong class="position">Software Engineer</strong> - <span class="company">Creative Minds Co.</span>
+                <p class="text-sm description">Participé en el diseño y desarrollo de sistemas internos, colaborando estrechamente con los equipos de diseño y producto.</p>
+            </li>
+            <li class="experience">
+                <strong class="position">Junior Developer</strong> - <span class="company">StartUp Hub</span>
+                <p class="text-sm description">Trabajé en el desarrollo de proyectos innovadores, aprendiendo y aplicando nuevas tecnologías en el proceso.</p>
+            </li>
+        </ul>
+        <h2 class="text-2xl font-semibold mb-2">Educación</h2>
+        <ul class="list-disc list-inside mb-4">
+            <li class="education">
+                <strong class="degree">Máster en Ciencias de la Computación</strong> - <span class="institution">Universidad de Tecnología</span>
+                <p class="text-sm description">Enfoque en desarrollo de software y sistemas avanzados.</p>
+            </li>
+            <li class="education">
+                <strong class="degree">Licenciatura en Ingeniería Informática</strong> - <span class="institution">Universidad Nacional</span>
+                <p class="text-sm description">Formación en fundamentos de la informática y desarrollo de software.</p>
+            </li>
+            <li class="education">
+                <strong class="degree">Diploma en Desarrollo Web</strong> - <span class="institution">Academia de Tecnología</span>
+                <p class="text-sm description">Curso intensivo en desarrollo web moderno y tecnologías emergentes.</p>
+            </li>
+        </ul>
+        <h2 class="text-2xl font-semibold mb-2">Habilidades</h2>
+        <ul class="list-disc list-inside mb-4">
+            <li class="skills">Desarrollo web (HTML, CSS, JavaScript, React, Angular)</li>
+            <li class="skills">Desarrollo de aplicaciones móviles (React Native, Flutter)</li>
+            <li class="skills">Backend (Node.js, Python, Ruby on Rails)</li>
+            <li class="skills">Base de datos (MySQL, PostgreSQL, MongoDB)</li>
+            <li class="skills">Control de versiones (Git, GitHub, Bitbucket)</li>
+        </ul>
+        <h2 class="text-2xl font-semibold mb-2">Contacto</h2>
+        <p class="text-sm contact-email">Correo electrónico: john.doe@correo.com</p>
+        <p class="text-sm contact-phone">Teléfono: +123456789</p>
+    </section>
+</main>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Obtener el path desde la meta tag
+        const path = getPathFromMetaTag();
+
+        if (path) {
+            // Hacer fetch a la URL para obtener los datos del CV
+            fetch(`http://localhost:8080/${path}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Rellenar los campos del CV con los datos recibidos
+                    document.querySelector('h1').textContent = data.name;
+                    document.querySelector('p').textContent = data.profile;
+
+                    // Experiencia Profesional
+                    document.querySelectorAll('.experience').forEach((element, index) => {
+                        const position = `experience_${index + 1}_position`;
+                        const company = `experience_${index + 1}_company`;
+                        const description = `experience_${index + 1}_description`;
+
+                        if (data[position] && data[company] && data[description]) {
+                            element.querySelector('.position').textContent = data[position];
+                            element.querySelector('.company').textContent = data[company];
+                            element.querySelector('.description').textContent = data[description];
+                        }
+                    });
+
+                    // Educación
+                    document.querySelectorAll('.education').forEach((element, index) => {
+                        const degree = `education_${index + 1}_degree`;
+                        const institution = `education_${index + 1}_institution`;
+                        const description = `education_${index + 1}_description`;
+
+                        if (data[degree] && data[institution] && data[description]) {
+                            element.querySelector('.degree').textContent = data[degree];
+                            element.querySelector('.institution').textContent = data[institution];
+                            element.querySelector('.description').textContent = data[description];
+                        }
+                    });
+
+                    // Habilidades
+                    document.querySelectorAll('.skills').forEach((element, index) => {
+                        const skill = `skills_${index + 1}`;
+                        if (data[skill]) {
+                            element.textContent = data[skill];
+                        }
+                    });
+
+                    // Contacto
+                    document.querySelector('.contact-email').textContent = data.contact_email;
+                    document.querySelector('.contact-phone').textContent = data.contact_phone;
+                });
+        }
+    });
+
+    function getPathFromMetaTag() {
+        const metaTag = document.querySelector('meta[name="PATH"]');
+        return metaTag ? metaTag.getAttribute('content') : null;
+    }
+
+    const toggleButton = document.getElementById('toggle-mode');
+    const body = document.body;
+
+    toggleButton.addEventListener('click', () => {
+        if (body.classList.contains('light-mode')) {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+            toggleButton.textContent = 'Modo Claro';
+        } else {
+            body.classList.remove('dark-mode');
+            body.classList.add('light-mode');
+            toggleButton.textContent = 'Modo Oscuro';
+        }
+    });
+
+    // Simulación de carga de imagen de perfil
+    setTimeout(() => {
+        const profileImage = document.getElementById('profile-image');
+        profileImage.classList.remove('skeleton');
+        profileImage.style.backgroundImage = 'url("https://via.placeholder.com/150")'; // Reemplaza con la URL de la imagen real
+        profileImage.style.backgroundSize = 'cover';
+        profileImage.style.backgroundPosition = 'center';
+    }, 3000);
+</script>
+</body>
+</html>
